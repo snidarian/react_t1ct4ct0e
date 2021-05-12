@@ -38,7 +38,14 @@ class Board extends React.Component {
         );
     }
     render() {
-        const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        const winner = calculateWinner(this.state.squares);
+        let status;
+        if (winner) {
+            status = 'Winner:' + winner;
+        }
+        else {
+            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
         return (
             <div>
                 <div className="status">{status}</div>
@@ -84,7 +91,6 @@ ReactDom.render(
     document.getElementById('root')
 );
 
-
 function calculateWinner(squares) {
     const lines = [
       [0, 1, 2],
@@ -98,9 +104,18 @@ function calculateWinner(squares) {
     ];
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
+      // So The values are 'x' or 'o' at squares[index] in any of the above configurations (lines 2d array) return winner.
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
       }
     }
+    // Returns null if a winner is not determined for any given move
     return null;
   }
+
+
+
+
+
+
+
