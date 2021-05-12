@@ -74,6 +74,15 @@ class Board extends React.Component {
 
 // game
 class Game extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            history: [{
+                squares: Array(9).fill(null),
+            }],
+            xIsNext: true,
+        };
+    }
     render() {
         return (
             <div className="game">
@@ -82,17 +91,29 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div>{/*status */}</div>
-                    <ol>/* TODO /*</ol>
+                    <ol>{/* TODO */}</ol>
                 </div>
             </div>
         );
     }
 }
 
+
 ReactDom.render(
-    <Game />,
+    <div>
+    <div>
+    <h2>Tic-Tac-Toe </h2>
+        <p>game comprising react.js logic written using JSX syntax variant.</p>
+    </div>
+    <hr></hr>
+    <div>
+    <Game />
+        
+    </div>
+    </div>,
     document.getElementById('root')
 );
+
 
 function calculateWinner(squares) {
     const lines = [
